@@ -45,11 +45,12 @@ export function AddMovieForm() {
       image_url: '',
     },
     validate,
-    onSubmit: (values) => {
+    onSubmit: (values, { resetForm }) => {
       axios
         .post('http://localhost:5000/movie', values)
         .then(() => {
           setDuplicateError(false);
+          resetForm();
         })
         .catch((error) => {
           if (error.response.data === 'TITLE_DUPLICATE') {
