@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
+import axios from 'axios';
 
 const validate = (values) => {
   const errors = {};
@@ -33,6 +34,7 @@ const validate = (values) => {
 };
 
 export function AddMovieForm() {
+  const [duplicateError, setDuplicateError] = useState(false);
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -44,7 +46,16 @@ export function AddMovieForm() {
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      axios
+        .post('http://localhost:5000/movie', values)
+        .then(() => {
+          setDuplicateError(false);
+        })
+        .catch((error) => {
+          if (error.response.data === 'TITLE_DUPLICATE') {
+            setDuplicateError(true);
+          }
+        });
     },
   });
   return (
@@ -62,6 +73,7 @@ export function AddMovieForm() {
         {formik.touched.title && formik.errors.title ? (
           <div>{formik.errors.title}</div>
         ) : null}
+        {duplicateError ? <div>Don't pass title duplicates!</div> : null}
         <label htmlFor='director'>Director</label>
         <input
           id='director'
