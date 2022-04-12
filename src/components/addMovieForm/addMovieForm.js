@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { Header } from '../header/header';
+import './addMovieForm.scss';
 
 const validate = (values) => {
   const errors = {};
@@ -63,8 +64,8 @@ export function AddMovieForm() {
   return (
     <div>
       <Header></Header>
-      <div className='add-movie'>
-        <form onSubmit={formik.handleSubmit}>
+      <form onSubmit={formik.handleSubmit} className='add-movie'>
+        <div className='form-item'>
           <label htmlFor='title'>Title</label>
           <input
             id='title'
@@ -75,9 +76,13 @@ export function AddMovieForm() {
             value={formik.values.title}
           />
           {formik.touched.title && formik.errors.title ? (
-            <div>{formik.errors.title}</div>
+            <div className='error'>{formik.errors.title}</div>
           ) : null}
-          {duplicateError ? <div>Don't pass title duplicates!</div> : null}
+          {duplicateError ? (
+            <div className='error'>Don't pass title duplicates!</div>
+          ) : null}
+        </div>
+        <div className='form-item'>
           <label htmlFor='director'>Director</label>
           <input
             id='director'
@@ -88,8 +93,10 @@ export function AddMovieForm() {
             value={formik.values.director}
           />
           {formik.touched.director && formik.errors.director ? (
-            <div>{formik.errors.director}</div>
+            <div className='error'>{formik.errors.director}</div>
           ) : null}
+        </div>
+        <div className='form-item'>
           <label htmlFor='genre'>Genre</label>
           <input
             id='genre'
@@ -100,8 +107,10 @@ export function AddMovieForm() {
             value={formik.values.genre}
           />
           {formik.touched.genre && formik.errors.genre ? (
-            <div>{formik.errors.genre}</div>
+            <div className='error'>{formik.errors.genre}</div>
           ) : null}
+        </div>
+        <div className='form-item'>
           <label htmlFor='year'>Year</label>
           <input
             id='year'
@@ -112,8 +121,10 @@ export function AddMovieForm() {
             value={formik.values.year}
           />
           {formik.touched.year && formik.errors.year ? (
-            <div>{formik.errors.year}</div>
+            <div className='error'>{formik.errors.year}</div>
           ) : null}
+        </div>
+        <div className='form-item'>
           <label htmlFor='description'>Description</label>
           <input
             id='description'
@@ -124,8 +135,10 @@ export function AddMovieForm() {
             value={formik.values.description}
           />
           {formik.touched.description && formik.errors.description ? (
-            <div>{formik.errors.description}</div>
+            <div className='error'>{formik.errors.description}</div>
           ) : null}
+        </div>
+        <div className='form-item'>
           <label htmlFor='image-url'>Image url</label>
           <input
             id='image-url'
@@ -136,11 +149,11 @@ export function AddMovieForm() {
             value={formik.values.image_url}
           />
           {formik.touched.image_url && formik.errors.image_url ? (
-            <div>{formik.errors.image_url}</div>
+            <div className='error'>{formik.errors.image_url}</div>
           ) : null}
-          <button type='submit'>Submit</button>
-        </form>
-      </div>
+        </div>
+        <button type='submit'>Submit</button>
+      </form>
     </div>
   );
 }

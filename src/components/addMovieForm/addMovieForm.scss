@@ -1,0 +1,37 @@
+div {
+  header {
+    margin-bottom: 30px;
+  }
+  form {
+    &.add-movie {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      .form-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+        height: 80px;
+        max-height: 80px;
+        label {
+          font-size: 20px;
+        }
+        input {
+          height: 25px;
+          width: 230px;
+        }
+        .error {
+          color: red;
+          font-size: 14px;
+        }
+      }
+      button {
+        width: 170px;
+        height: 40px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
