@@ -37,6 +37,7 @@ const validate = (values) => {
 
 export function AddMovieForm() {
   const [duplicateError, setDuplicateError] = useState(false);
+  const [postSuccess, setPostSuccess] = useState(false);
   const formik = useFormik({
     initialValues: {
       title: '',
@@ -53,6 +54,7 @@ export function AddMovieForm() {
         .then(() => {
           setDuplicateError(false);
           resetForm();
+          setPostSuccess(true);
         })
         .catch((error) => {
           if (error.response.data === 'TITLE_DUPLICATE') {
@@ -152,7 +154,14 @@ export function AddMovieForm() {
             <div className='error'>{formik.errors.image_url}</div>
           ) : null}
         </div>
-        <button type='submit'>Submit</button>
+        <div className='submit-area'>
+          <button type='submit'>Submit</button>
+          {postSuccess ? (
+            <div className='success'>Your movie has been posted!</div>
+          ) : (
+            <div />
+          )}
+        </div>
       </form>
     </div>
   );
