@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
+import { Header } from '../header/header';
 
 const validate = (values) => {
   const errors = {};
@@ -60,83 +61,86 @@ export function AddMovieForm() {
     },
   });
   return (
-    <div className='add-movie'>
-      <form onSubmit={formik.handleSubmit}>
-        <label htmlFor='title'>Title</label>
-        <input
-          id='title'
-          name='title'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.title}
-        />
-        {formik.touched.title && formik.errors.title ? (
-          <div>{formik.errors.title}</div>
-        ) : null}
-        {duplicateError ? <div>Don't pass title duplicates!</div> : null}
-        <label htmlFor='director'>Director</label>
-        <input
-          id='director'
-          name='director'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.director}
-        />
-        {formik.touched.director && formik.errors.director ? (
-          <div>{formik.errors.director}</div>
-        ) : null}
-        <label htmlFor='genre'>Genre</label>
-        <input
-          id='genre'
-          name='genre'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.genre}
-        />
-        {formik.touched.genre && formik.errors.genre ? (
-          <div>{formik.errors.genre}</div>
-        ) : null}
-        <label htmlFor='year'>Year</label>
-        <input
-          id='year'
-          name='year'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.year}
-        />
-        {formik.touched.year && formik.errors.year ? (
-          <div>{formik.errors.year}</div>
-        ) : null}
-        <label htmlFor='description'>Description</label>
-        <input
-          id='description'
-          name='description'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.description}
-        />
-        {formik.touched.description && formik.errors.description ? (
-          <div>{formik.errors.description}</div>
-        ) : null}
-        <label htmlFor='image-url'>Image url</label>
-        <input
-          id='image-url'
-          name='image_url'
-          type='text'
-          onChange={formik.handleChange}
-          onBlur={formik.handleBlur}
-          value={formik.values.image_url}
-        />
-        {formik.touched.image_url && formik.errors.image_url ? (
-          <div>{formik.errors.image_url}</div>
-        ) : null}
-        <button type='submit'>Submit</button>
-      </form>
+    <div>
+      <Header></Header>
+      <div className='add-movie'>
+        <form onSubmit={formik.handleSubmit}>
+          <label htmlFor='title'>Title</label>
+          <input
+            id='title'
+            name='title'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.title}
+          />
+          {formik.touched.title && formik.errors.title ? (
+            <div>{formik.errors.title}</div>
+          ) : null}
+          {duplicateError ? <div>Don't pass title duplicates!</div> : null}
+          <label htmlFor='director'>Director</label>
+          <input
+            id='director'
+            name='director'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.director}
+          />
+          {formik.touched.director && formik.errors.director ? (
+            <div>{formik.errors.director}</div>
+          ) : null}
+          <label htmlFor='genre'>Genre</label>
+          <input
+            id='genre'
+            name='genre'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.genre}
+          />
+          {formik.touched.genre && formik.errors.genre ? (
+            <div>{formik.errors.genre}</div>
+          ) : null}
+          <label htmlFor='year'>Year</label>
+          <input
+            id='year'
+            name='year'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.year}
+          />
+          {formik.touched.year && formik.errors.year ? (
+            <div>{formik.errors.year}</div>
+          ) : null}
+          <label htmlFor='description'>Description</label>
+          <input
+            id='description'
+            name='description'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.description}
+          />
+          {formik.touched.description && formik.errors.description ? (
+            <div>{formik.errors.description}</div>
+          ) : null}
+          <label htmlFor='image-url'>Image url</label>
+          <input
+            id='image-url'
+            name='image_url'
+            type='text'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.image_url}
+          />
+          {formik.touched.image_url && formik.errors.image_url ? (
+            <div>{formik.errors.image_url}</div>
+          ) : null}
+          <button type='submit'>Submit</button>
+        </form>
+      </div>
     </div>
   );
 }
