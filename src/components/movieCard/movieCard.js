@@ -6,9 +6,11 @@ export function MovieCard({ movie }) {
     <div className='movie-card' key={movie.id}>
       <img src={movie.image_url} alt=''></img>
       <div className='movie-info'>
-        <h6>{movie.title}</h6>
-        <p>{movie.genre}</p>
-        <p>{movie.year}</p>
+        <div className='title'>
+          {movie.title}
+          <span>{movie.year}</span>
+        </div>
+        <p>genre: {movie.genre}</p>
       </div>
     </div>
   );
