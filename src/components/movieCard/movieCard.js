@@ -1,7 +1,12 @@
 import React from 'react';
 import './movieCard.scss';
+import Checkbox from '@mui/material/Checkbox';
 
-export function MovieCard({ movie }) {
+export function MovieCard({ handleChecked, movie }) {
+  const handleChange = () => {
+    handleChecked(movie.id);
+  };
+
   return (
     <div className='movie-card' key={movie.id}>
       <img src={movie.image_url} alt=''></img>
@@ -11,6 +16,9 @@ export function MovieCard({ movie }) {
           <span>{movie.year}</span>
         </div>
         <p>genre: {movie.genre}</p>
+      </div>
+      <div className='right-section'>
+        <Checkbox onChange={handleChange} id={`${movie.id}`}></Checkbox>
       </div>
     </div>
   );
