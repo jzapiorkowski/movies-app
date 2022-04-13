@@ -11,7 +11,7 @@ export function MoviesList() {
     axios.get('http://localhost:5000/movies').then((movies) => {
       setMovies(movies.data);
     });
-  }, []);
+  }, [movies]);
 
   const handleChecked = (movieId) => {
     setMoviesToDelete(() => {
@@ -23,17 +23,28 @@ export function MoviesList() {
     });
   };
 
+  const handleDelete = () => {
+    moviesToDelete.forEach((id) => {
+      axios.delete(`http://localhost:5000/movie/${id}`);
+    });
+  };
+
   return (
-    <div className='movies-list'>
-      {movies.map((movie) => {
-        return (
-          <MovieCard
-            movie={movie}
-            key={movie.id}
-            handleChecked={handleChecked}
-          ></MovieCard>
-        );
-      })}
-    </div>
+    <main>
+      <fieldset>
+        <div onClick={handleDelete}>Delete chosen movies</div>
+      </fieldset>
+      <div className='movies-list'>
+        {movies.map((movie) => {
+          return (
+            <MovieCard
+              movie={movie}
+              key={movie.id}
+              handleChecked={handleChecked}
+            ></MovieCard>
+          );
+        })}
+      </div>
+    </main>
   );
 }
