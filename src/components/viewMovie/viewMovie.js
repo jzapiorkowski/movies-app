@@ -23,20 +23,18 @@ export function ViewMovie() {
     <div className='movie-modal-wrapper'>
       <div className='movie-modal'>
         <img src={movieInfo.image_url} alt=''></img>
-        <main>
-          <div className='options'>
-            <div className='close-button' onClick={handleClose}>
-              <AiOutlineClose />
-            </div>
+        <div className='options'>
+          <div className='close-button' onClick={handleClose}>
+            <AiOutlineClose />
           </div>
-          <div className='movie-info'>
-            <p className='title'>
-              {movieInfo.title} ({movieInfo.year})
-            </p>
-            <p className='description'>{movieInfo.description}</p>
-            <p>Directed by: {movieInfo.director}</p>
-          </div>
-        </main>
+        </div>
+        <p className='title'>
+          {movieInfo.title} ({movieInfo.year})
+        </p>
+        <div className='movie-info'>
+          <p className='description'>{movieInfo.description}</p>
+          <p>Directed by: {movieInfo.director}</p>
+        </div>
       </div>
     </div>
   );

@@ -1,5 +1,4 @@
 .movie-modal-wrapper {
-  background-color: red;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -16,29 +15,59 @@
     background-color: white;
     display: flex;
     position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    @media (max-width: 1300px) {
+      width: 100vw;
+      height: 500px;
+      flex-direction: row;
+    }
     img {
       height: 100%;
+      margin-right: 20px;
+      @media (max-width: 1300px) {
+        height: calc(40vw + 100px);
+        width: 40vw;
+        margin-right: 10px;
+      }
     }
-    main {
-      padding: 0 20px;
-      .options {
-        align-self: flex-end;
-        position: absolute;
-        right: 5px;
-        top: 5px;
-        .close-button {
-          width: 30px;
-          height: 30px;
-          cursor: pointer;
-          svg {
-            height: 100%;
-            width: 100%;
-          }
+    .title {
+      margin-top: 35px;
+      font-size: 40px;
+      font-weight: bold;
+      @media (max-width: 1300px) {
+        font-size: 25px;
+        flex-basis: calc(50% - 10px);
+        margin-top: 50px;
+        height: calc(40vw + 50px);
+      }
+    }
+    .options {
+      align-self: flex-end;
+      position: absolute;
+      right: 5px;
+      top: 5px;
+      .close-button {
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+        svg {
+          height: 100%;
+          width: 100%;
         }
       }
-      .title {
-        font-size: 40px;
-        font-weight: bold;
+    }
+    .movie-info {
+      margin-top: 35px;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      flex-wrap: wrap;
+      width: 850px;
+      @media (max-width: 1300px) {
+        margin-top: 0;
+        width: 100vw;
+        padding: 0 5px;
       }
       .description {
         font-size: 20px;
