@@ -13,6 +13,7 @@
     "formik": "^2.2.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-icons": "^4.3.1",
     "react-router-dom": "6",
     "react-scripts": "5.0.0",
     "sass": "^1.50.0",
