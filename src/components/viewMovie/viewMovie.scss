@@ -1,0 +1,48 @@
+.movie-modal-wrapper {
+  background-color: red;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  .movie-modal {
+    height: 400px;
+    width: 1200px;
+    background-color: white;
+    display: flex;
+    position: relative;
+    img {
+      height: 100%;
+    }
+    main {
+      padding: 0 20px;
+      .options {
+        align-self: flex-end;
+        position: absolute;
+        right: 5px;
+        top: 5px;
+        .close-button {
+          width: 30px;
+          height: 30px;
+          cursor: pointer;
+          svg {
+            height: 100%;
+            width: 100%;
+          }
+        }
+      }
+      .title {
+        font-size: 40px;
+        font-weight: bold;
+      }
+      .description {
+        font-size: 20px;
+      }
+    }
+  }
+}
