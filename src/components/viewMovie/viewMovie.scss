@@ -17,6 +17,8 @@
     position: relative;
     flex-direction: column;
     flex-wrap: wrap;
+    background-color: #cee5f2;
+    border-radius: 10px;
     @media (max-width: 1300px) {
       width: 100vw;
       height: 500px;
@@ -25,10 +27,12 @@
     img {
       height: 100%;
       margin-right: 20px;
+      border-radius: 10px 0 0 10px;
       @media (max-width: 1300px) {
         height: calc(40vw + 100px);
         width: 40vw;
         margin-right: 10px;
+        border-radius: 10px 0 0 0;
       }
     }
     .title {
