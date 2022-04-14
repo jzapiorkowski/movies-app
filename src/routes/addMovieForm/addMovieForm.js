@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
-import { Header } from '../header/header';
+import { Header } from '../../components/header/header';
 import './addMovieForm.scss';
 
 const validate = (values) => {

@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AddMovieForm } from './components/addMovieForm/addMovieForm';
-import { ViewMovie } from './components/viewMovie/viewMovie';
+import { AddMovieForm } from './routes/addMovieForm/addMovieForm';
+import { ViewMovie } from './routes/viewMovie/viewMovie';
 
 ReactDOM.render(
   <React.StrictMode>
