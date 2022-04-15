@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { moviesClient } from '../../api/moviesClient';
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './viewMovie.scss';
@@ -10,7 +10,7 @@ export function ViewMovie() {
   const [movieInfo, setMovieInfo] = useState({});
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/movie/${id}`).then((response) => {
+    moviesClient.get(`/movie/${id}`).then((response) => {
       setMovieInfo(response.data);
     });
   }, []);

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
-import axios from 'axios';
+import { moviesClient } from '../../api/moviesClient';
 import { Header } from '../../components/header/header';
 import './addMovieForm.scss';
 
@@ -49,8 +49,8 @@ export function AddMovieForm() {
     },
     validate,
     onSubmit: (values, { resetForm }) => {
-      axios
-        .post('http://localhost:5000/movie', values)
+      moviesClient
+        .post('/movie', values)
         .then(() => {
           setDuplicateError(false);
           resetForm();

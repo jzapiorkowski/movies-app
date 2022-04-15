@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
-import axios from 'axios';
+import { moviesClient } from '../../api/moviesClient';
 import './moviesList.scss';
 
 export function MoviesList() {
@@ -8,7 +8,7 @@ export function MoviesList() {
   const [moviesToDelete, setMoviesToDelete] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/movies').then((movies) => {
+    moviesClient.get('/movies').then((movies) => {
       setMovies(movies.data);
     });
   }, [movies]);
@@ -25,7 +25,7 @@ export function MoviesList() {
 
   const handleDelete = () => {
     moviesToDelete.forEach((id) => {
-      axios.delete(`http://localhost:5000/movie/${id}`);
+      moviesClient.delete(`/movie/${id}`);
     });
   };
 
