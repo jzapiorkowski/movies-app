@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './viewMovie.scss';
 import { AiOutlineClose } from 'react-icons/ai';
+import StarBorderIcon from '@mui/icons-material/StarBorder';
+import StarIcon from '@mui/icons-material/Star';
 
 export function ViewMovie() {
   let { id } = useParams();
@@ -15,14 +17,26 @@ export function ViewMovie() {
     });
   }, []);
 
-  const handleClose = () => {
-    navigate('/');
-  };
-
   useEffect(() => {
     document.body.style.overflow = 'hidden';
     return () => (document.body.style.overflow = 'unset');
   }, []);
+
+  const handleClose = () => {
+    navigate('/');
+  };
+
+  const ratingStars = () => {
+    let tmp = [];
+    for (let i = 0; i < 5; i++) {
+      tmp.push(
+        <div className='star' key={i}>
+          {i < movieInfo.rating ? <StarIcon /> : <StarBorderIcon />}
+        </div>
+      );
+    }
+    return <div className='stars'>{tmp}</div>;
+  };
 
   return (
     <div className='movie-modal-wrapper'>
@@ -33,12 +47,12 @@ export function ViewMovie() {
             <AiOutlineClose />
           </div>
         </div>
-        <p className='title'>
-          {movieInfo.title} ({movieInfo.year})
-        </p>
+        <div className='main'>
+          {movieInfo.title} ({movieInfo.year}){ratingStars()}
+        </div>
         <div className='movie-info'>
           <p className='description'>{movieInfo.description}</p>
-          <p>Directed by: {movieInfo.director}</p>
+          <p onClick={ratingStars}>Directed by: {movieInfo.director}</p>
         </div>
       </div>
     </div>

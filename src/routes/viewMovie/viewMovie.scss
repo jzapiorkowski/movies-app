@@ -35,7 +35,7 @@
         border-radius: 10px 0 0 0;
       }
     }
-    .title {
+    .main {
       margin-top: 35px;
       font-size: 40px;
       font-weight: bold;
@@ -44,6 +44,22 @@
         flex-basis: calc(50% - 10px);
         margin-top: 50px;
         height: calc(40vw + 50px);
+      }
+      .stars {
+        margin-top: 20px;
+        display: flex;
+        @media (max-width: 1300px) {
+          margin-top: 30px;
+        }
+        .star {
+          svg {
+            font-size: 50px;
+            color: #ffc200;
+            @media (max-width: 1300px) {
+              font-size: 35px;
+            }
+          }
+        }
       }
     }
     .options {
