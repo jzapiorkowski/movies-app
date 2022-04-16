@@ -1,51 +1,83 @@
 .movie-card {
-  // border: 1px black solid;
-  display: flex;
-  width: 600px;
+  width: 750px;
   height: 200px;
   padding-right: 20px;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   background-color: #cee5f2;
   border-radius: 10px;
+  display: grid;
+  grid-template-columns: 140px 510px 100px;
+  grid-template-rows: repeat(3, 1fr);
   @media (max-width: 1300px) {
-    width: calc((100vw / 2) - 50px);
-  }
-  @media (max-width: 900px) {
-    width: 90%;
+    width: 95%;
+    grid-template-columns: 105px calc(90% - 105px) 10%;
     height: 150px;
+    padding-right: 5px;
   }
   a {
     text-decoration: none;
     color: black;
-  }
-  img {
-    height: 100%;
-    width: 140px;
-    border-radius: 10px 0 0 10px;
-    @media (max-width: 900px) {
-      width: 105px;
-    }
-  }
-  .movie-info {
-    margin-left: 20px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    .title {
-      margin: 20px 0;
-      display: flex;
-      font-size: 22px;
+    &.title {
+      grid-column: 2;
+      grid-row: 1;
+      padding: 15px 0 0 15px;
+      font-weight: bold;
+      font-size: 24px;
       @media (max-width: 1300px) {
-        font-size: 20px;
+        font-size: 18px;
+        grid-column: 2 / span 2;
       }
       span {
-        margin-left: 10px;
+        margin-left: 5px;
+      }
+    }
+    &.image {
+      grid-column: 1;
+      grid-row: 1 / span 3;
+      img {
+        height: 100%;
+        width: 140px;
+        border-radius: 10px 0 0 10px;
+
+        @media (max-width: 900px) {
+          width: 105px;
+        }
+      }
+    }
+  }
+  .genre {
+    grid-row: 2;
+    grid-column: 2;
+    padding: 15px;
+    @media (max-width: 1300px) {
+      grid-row: 3;
+    }
+  }
+  .checkbox {
+    grid-column: 3;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .rating {
+    grid-column: 3;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    letter-spacing: 1.5px;
+    svg {
+      font-size: 40px;
+      @media (max-width: 1300px) {
+        font-size: 30px;
       }
     }
     @media (max-width: 1300px) {
-      p {
-        font-size: 16px;
-      }
+      grid-column: 2;
+      grid-row: 2;
+      font-size: 18px;
+      padding-left: 15px;
     }
   }
 }

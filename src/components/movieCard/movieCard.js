@@ -2,6 +2,7 @@ import React from 'react';
 import './movieCard.scss';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
+import StarIcon from '@mui/icons-material/Star';
 
 export function MovieCard({ handleChecked, movie }) {
   const handleChange = () => {
@@ -10,20 +11,20 @@ export function MovieCard({ handleChecked, movie }) {
 
   return (
     <div className='movie-card' key={movie.id}>
-      <Link to={`movie/${movie.id}`}>
+      <Link to={`movie/${movie.id}`} className='image'>
         <img src={movie.image_url} alt=''></img>
       </Link>
-      <div className='movie-info'>
-        <Link to={`movie/${movie.id}`}>
-          <div className='title'>
-            {movie.title}
-            <span>{movie.year}</span>
-          </div>
-        </Link>
-        <p>genre: {movie.genre}</p>
-      </div>
-      <div className='right-section'>
+      <Link to={`movie/${movie.id}`} className='title'>
+        {movie.title}
+        <span>({movie.year})</span>
+      </Link>
+      <p className='genre'>Genre: {movie.genre}</p>
+      <div className='checkbox'>
         <Checkbox onChange={handleChange} id={`${movie.id}`}></Checkbox>
+      </div>
+      <div className='rating'>
+        <StarIcon style={{ color: '#ffc200' }} />
+        <p>{movie.rating}/5</p>
       </div>
     </div>
   );
