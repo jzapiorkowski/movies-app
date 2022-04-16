@@ -11,7 +11,7 @@ export function MoviesList() {
     moviesClient.get('/movies').then((movies) => {
       setMovies(movies.data);
     });
-  }, [movies]);
+  }, []);
 
   const handleChecked = (movieId) => {
     setMoviesToDelete(() => {
