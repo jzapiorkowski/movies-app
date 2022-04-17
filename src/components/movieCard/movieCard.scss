@@ -103,6 +103,7 @@
       justify-content: center;
     }
     svg {
+      cursor: pointer;
       font-size: 40px;
       color: red;
       @media (max-width: 1300px) {

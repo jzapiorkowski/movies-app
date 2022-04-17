@@ -5,10 +5,14 @@ import { Link } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
-import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
+import {
+  FavoriteMoviesContext,
+  UpdateFavoriteMoviesContext,
+} from '../../contexts/favoriteMovieContext';
 
 export function MovieCard({ handleChecked, movie }) {
   const favoriteMoviesList = useContext(FavoriteMoviesContext);
+  const updateFavoriteMoviesContext = useContext(UpdateFavoriteMoviesContext);
 
   const isFavorite = favoriteMoviesList.includes(movie.id);
 
@@ -34,7 +38,13 @@ export function MovieCard({ handleChecked, movie }) {
         <p>{movie.rating}/5</p>
       </div>
       <div className='favorite-icon'>
-        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+        {isFavorite ? (
+          <FavoriteIcon onClick={() => updateFavoriteMoviesContext(movie.id)} />
+        ) : (
+          <FavoriteBorderIcon
+            onClick={() => updateFavoriteMoviesContext(movie.id)}
+          />
+        )}
       </div>
     </div>
   );
