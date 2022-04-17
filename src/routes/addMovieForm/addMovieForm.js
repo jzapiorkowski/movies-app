@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import { moviesClient } from '../../api/moviesClient';
-import { Header } from '../../components/header/header';
 import './addMovieForm.scss';
 
 const validate = (values) => {
@@ -65,7 +64,6 @@ export function AddMovieForm() {
   });
   return (
     <div>
-      <Header></Header>
       <form onSubmit={formik.handleSubmit} className='add-movie'>
         <div className='form-item'>
           <label htmlFor='title'>Title</label>

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { moviesClient } from '../../api/moviesClient';
 import './moviesList.scss';
+import { Outlet } from 'react-router-dom';
 
 export function MoviesList() {
   const [movies, setMovies] = useState([]);
@@ -45,6 +46,7 @@ export function MoviesList() {
           );
         })}
       </div>
+      <Outlet />
     </main>
   );
 }

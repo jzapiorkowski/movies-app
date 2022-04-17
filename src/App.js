@@ -1,13 +1,19 @@
 import { MoviesList } from './components/moviesList/moviesList';
 import { Header } from './components/header/header';
-import { Outlet } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
+import { AddMovieForm } from './routes/addMovieForm/addMovieForm';
+import { ViewMovie } from './routes/viewMovie/viewMovie';
 
 function App() {
   return (
     <div className='App'>
       <Header></Header>
-      <MoviesList></MoviesList>
-      <Outlet />
+      <Routes>
+        <Route path='/' element={<MoviesList />}>
+          <Route path='movie/:id' element={<ViewMovie />}></Route>
+        </Route>
+        <Route path='/add-movie' element={<AddMovieForm />}></Route>
+      </Routes>
     </div>
   );
 }

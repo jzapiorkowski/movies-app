@@ -2,19 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { AddMovieForm } from './routes/addMovieForm/addMovieForm';
-import { ViewMovie } from './routes/viewMovie/viewMovie';
+import { BrowserRouter } from 'react-router-dom';
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
-      <Routes>
-        <Route path='/' element={<App />}>
-          <Route path='movie/:id' element={<ViewMovie />}></Route>
-        </Route>
-        <Route path='/add-movie' element={<AddMovieForm />}></Route>
-      </Routes>
+      <App />
     </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
