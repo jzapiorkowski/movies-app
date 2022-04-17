@@ -1,10 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './movieCard.scss';
 import Checkbox from '@mui/material/Checkbox';
 import { Link } from 'react-router-dom';
 import StarIcon from '@mui/icons-material/Star';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
 
 export function MovieCard({ handleChecked, movie }) {
+  const favoriteMoviesList = useContext(FavoriteMoviesContext);
+
+  const isFavorite = favoriteMoviesList.includes(movie.id);
+
   const handleChange = () => {
     handleChecked(movie.id);
   };
@@ -25,6 +32,9 @@ export function MovieCard({ handleChecked, movie }) {
       <div className='rating'>
         <StarIcon style={{ color: '#ffc200' }} />
         <p>{movie.rating}/5</p>
+      </div>
+      <div className='favorite-icon'>
+        {isFavorite ? <FavoriteIcon /> : <FavoriteBorderIcon />}
       </div>
     </div>
   );
