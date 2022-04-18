@@ -10,40 +10,44 @@
   align-items: center;
   background: rgba(0, 0, 0, 0.5);
   .movie-modal {
-    height: 400px;
-    width: 1200px;
-    background-color: white;
-    display: flex;
-    position: relative;
-    flex-direction: column;
-    flex-wrap: wrap;
     background-color: #cee5f2;
     border-radius: 10px;
+    height: 400px;
+    width: 1200px;
+    display: grid;
+    grid-template-columns: 280px calc(100% - 290px);
+    grid-template-rows: 35px repeat(4, 1fr);
+    gap: 10px;
     @media (max-width: 1300px) {
       width: 100vw;
       height: 500px;
-      flex-direction: row;
+      grid-template-columns: 200px calc(100vw - 210px);
+      grid-template-rows: 40px 120px 120px 90px 90px;
+    }
+    @media (max-width: 900px) {
+      grid-template-columns: 150px calc(100vw - 160px);
+      grid-template-rows: 40px 82.5px 82.5px 127.5px 127.5px;
     }
     img {
       height: 100%;
-      margin-right: 20px;
+      grid-column: 1;
+      grid-row: 1 / span 5;
       border-radius: 10px 0 0 10px;
       @media (max-width: 1300px) {
-        height: calc(40vw + 100px);
-        width: 40vw;
-        margin-right: 10px;
+        width: 200px;
         border-radius: 10px 0 0 0;
+        height: 300px;
+      }
+      @media (max-width: 900px) {
+        width: 150px;
+        height: 225px;
       }
     }
     .main {
-      margin-top: 35px;
       font-size: 40px;
       font-weight: bold;
       @media (max-width: 1300px) {
-        font-size: 25px;
-        flex-basis: calc(50% - 10px);
-        margin-top: 50px;
-        height: calc(40vw + 50px);
+        font-size: 22px;
       }
       .stars {
         margin-top: 20px;
@@ -62,11 +66,26 @@
         }
       }
     }
+    .description {
+      @media (max-width: 1300px) {
+        grid-column: 1 / span 2;
+        grid-row: 4;
+        margin-left: 5px;
+      }
+    }
+    .director {
+      @media (max-width: 1300px) {
+        grid-column: 1 / span 2;
+        grid-row: 5;
+        margin-left: 5px;
+      }
+    }
     .options {
-      align-self: flex-end;
-      position: absolute;
-      right: 5px;
-      top: 5px;
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      justify-content: flex-end;
+      margin: 5px 5px 0 0;
       .close-button {
         width: 30px;
         height: 30px;
@@ -75,22 +94,6 @@
           height: 100%;
           width: 100%;
         }
-      }
-    }
-    .movie-info {
-      margin-top: 35px;
-      display: flex;
-      flex-direction: column;
-      gap: 30px;
-      flex-wrap: wrap;
-      width: 850px;
-      @media (max-width: 1300px) {
-        margin-top: 0;
-        width: 100vw;
-        padding: 0 5px;
-      }
-      .description {
-        font-size: 20px;
       }
     }
   }
