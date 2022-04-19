@@ -1,16 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer, useContext } from 'react';
 import { MovieCard } from '../movieCard/movieCard';
 import { moviesClient } from '../../api/moviesClient';
 import './moviesList.scss';
 import { Outlet } from 'react-router-dom';
+import { Checkbox } from '@mui/material';
+import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
 
 export function MoviesList() {
+  const FavoriteMoviesList = useContext(FavoriteMoviesContext);
   const [movies, setMovies] = useState([]);
   const [moviesToDelete, setMoviesToDelete] = useState([]);
   const [sortType, setSortType] = useState();
   const [moviesFound, setMoviesFound] = useState([]);
   const [yearRange, setYearRange] = useState([1000, new Date().getFullYear()]);
   const [ratingRange, setRatingRange] = useState([1, 5]);
+  const [onlyFavoriteMovies, setOnlyFavoriteMovies] = useReducer(
+    (prevState) => !prevState,
+    false
+  );
 
   useEffect(() => {
     moviesClient.get('/movies').then((movies) => {
@@ -61,7 +68,7 @@ export function MoviesList() {
 
   useEffect(() => {
     applyFilters();
-  }, [yearRange, ratingRange]);
+  }, [yearRange, ratingRange, onlyFavoriteMovies]);
 
   function applyFilters() {
     let tmp = movies;
@@ -73,6 +80,12 @@ export function MoviesList() {
     tmp = tmp.filter((movie) => {
       return movie.rating >= ratingRange[0] && movie.rating <= ratingRange[1];
     });
+
+    if (onlyFavoriteMovies) {
+      tmp = tmp.filter((movie) => {
+        return FavoriteMoviesList.includes(movie.id);
+      });
+    }
 
     setMoviesFound([...tmp]);
   }
@@ -163,6 +176,10 @@ export function MoviesList() {
             handleRatingFilterChange(event.target.value, 'max')
           }
         ></input>
+        <div>
+          <Checkbox onChange={setOnlyFavoriteMovies} />
+          <span>Only favorite movies</span>
+        </div>
         <div onClick={handleDelete}>Delete chosen movies</div>
       </fieldset>
       <div className='movies-list'>
