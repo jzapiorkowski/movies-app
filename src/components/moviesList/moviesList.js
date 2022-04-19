@@ -58,6 +58,19 @@ export function MoviesList() {
     setMoviesFound([...tmp]);
   }, [sortType]);
 
+  useEffect(() => {
+    applyFilters();
+  }, [yearRange]);
+
+  function applyFilters() {
+    let tmp = movies;
+
+    tmp = tmp.filter((movie) => {
+      return movie.year >= yearRange[0] && movie.year <= yearRange[1];
+    });
+    setMoviesFound([...tmp]);
+  }
+
   const handleChecked = (movieId) => {
     setMoviesToDelete(() => {
       if (moviesToDelete.includes(movieId)) {
