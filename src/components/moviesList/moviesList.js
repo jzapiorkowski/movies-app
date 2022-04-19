@@ -9,6 +9,7 @@ export function MoviesList() {
   const [moviesToDelete, setMoviesToDelete] = useState([]);
   const [sortType, setSortType] = useState();
   const [moviesFound, setMoviesFound] = useState([]);
+  const [yearRange, setYearRange] = useState([1000, new Date().getFullYear()]);
 
   useEffect(() => {
     moviesClient.get('/movies').then((movies) => {
@@ -77,6 +78,14 @@ export function MoviesList() {
     setSortType(event.target.value);
   };
 
+  const handleYearChange = (year, side) => {
+    if (side === 'min') {
+      setYearRange([year, yearRange[1]]);
+    } else if (side === 'max') {
+      setYearRange([yearRange[0], year]);
+    }
+  };
+
   return (
     <main>
       <fieldset>
@@ -91,6 +100,20 @@ export function MoviesList() {
           <option value='newest'>Newest release year</option>
           <option value='oldest'>Oldest release year</option>
         </select>
+        <input
+          defaultValue={yearRange[0]}
+          type='number'
+          min={1000}
+          max={new Date().getFullYear() - 1}
+          onChange={(event) => handleYearChange(event.target.value, 'min')}
+        ></input>
+        <input
+          defaultValue={yearRange[1]}
+          type='number'
+          min={1001}
+          max={new Date().getFullYear()}
+          onChange={(event) => handleYearChange(event.target.value, 'max')}
+        ></input>
         <div onClick={handleDelete}>Delete chosen movies</div>
       </fieldset>
       <div className='movies-list'>
