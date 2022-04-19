@@ -33,6 +33,14 @@ export function MoviesList() {
   return (
     <main>
       <fieldset>
+        <select className='sort-type'>
+          <option value='alphabetASC'>A-Z</option>
+          <option value='alphabetDESC'>Z-A</option>
+          <option value='ratingASC'>Highest Rating</option>
+          <option value='ratingDESC'>Lowest Rating</option>
+          <option value='newest'>Newest</option>
+          <option value='oldest'>Oldest</option>
+        </select>
         <div onClick={handleDelete}>Delete chosen movies</div>
       </fieldset>
       <div className='movies-list'>
