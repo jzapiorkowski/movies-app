@@ -59,23 +59,25 @@ export function ViewMovie() {
           </div>
         </div>
         <div className='main'>
-          {movieInfo.title} ({movieInfo.year}){ratingStars()}
+          {movieInfo.title}
+          <div className='favorite-icon'>
+            {isFavorite ? (
+              <FavoriteIcon
+                onClick={() => updateFavoriteMoviesContext(movieInfo.id)}
+              />
+            ) : (
+              <FavoriteBorderIcon
+                onClick={() => updateFavoriteMoviesContext(movieInfo.id)}
+              />
+            )}
+          </div>
         </div>
+        {ratingStars()}
         <p className='description'>{movieInfo.description}</p>
         <p className='director' onClick={ratingStars}>
           Directed by: {movieInfo.director}
         </p>
-        <div className='favorite-icon'>
-          {isFavorite ? (
-            <FavoriteIcon
-              onClick={() => updateFavoriteMoviesContext(movieInfo.id)}
-            />
-          ) : (
-            <FavoriteBorderIcon
-              onClick={() => updateFavoriteMoviesContext(movieInfo.id)}
-            />
-          )}
-        </div>
+        <div className='year'>Year: {movieInfo.year}</div>
       </div>
     </div>
   );
