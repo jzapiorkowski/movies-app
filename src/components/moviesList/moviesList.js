@@ -119,6 +119,7 @@ export function MoviesList() {
           min={1000}
           max={new Date().getFullYear() - 1}
           onChange={(event) => handleYearChange(event.target.value, 'min')}
+          name='minYear'
         ></input>
         <input
           defaultValue={yearRange[1]}
@@ -126,6 +127,7 @@ export function MoviesList() {
           min={1001}
           max={new Date().getFullYear()}
           onChange={(event) => handleYearChange(event.target.value, 'max')}
+          name='maxYear'
         ></input>
         <div onClick={handleDelete}>Delete chosen movies</div>
       </fieldset>
