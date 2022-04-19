@@ -61,7 +61,7 @@ export function MoviesList() {
 
   useEffect(() => {
     applyFilters();
-  }, [yearRange]);
+  }, [yearRange, ratingRange]);
 
   function applyFilters() {
     let tmp = movies;
@@ -69,6 +69,11 @@ export function MoviesList() {
     tmp = tmp.filter((movie) => {
       return movie.year >= yearRange[0] && movie.year <= yearRange[1];
     });
+
+    tmp = tmp.filter((movie) => {
+      return movie.rating >= ratingRange[0] && movie.rating <= ratingRange[1];
+    });
+
     setMoviesFound([...tmp]);
   }
 
@@ -97,6 +102,14 @@ export function MoviesList() {
       setYearRange([year, yearRange[1]]);
     } else if (side === 'max') {
       setYearRange([yearRange[0], year]);
+    }
+  };
+
+  const handleRatingFilterChange = (rating, side) => {
+    if (side === 'min') {
+      setRatingRange([rating, ratingRange[1]]);
+    } else if (side === 'max') {
+      setRatingRange([ratingRange[0], rating]);
     }
   };
 
@@ -136,6 +149,9 @@ export function MoviesList() {
           min={1}
           max={5}
           name='minRating'
+          onChange={(event) =>
+            handleRatingFilterChange(event.target.value, 'min')
+          }
         ></input>
         <input
           defaultValue={ratingRange[1]}
@@ -143,6 +159,9 @@ export function MoviesList() {
           min={1}
           max={5}
           name='maxRating'
+          onChange={(event) =>
+            handleRatingFilterChange(event.target.value, 'max')
+          }
         ></input>
         <div onClick={handleDelete}>Delete chosen movies</div>
       </fieldset>
