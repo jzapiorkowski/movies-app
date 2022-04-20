@@ -3,9 +3,8 @@ import { MovieCard } from '../movieCard/movieCard';
 import { moviesClient } from '../../api/moviesClient';
 import './moviesList.scss';
 import { Outlet } from 'react-router-dom';
-import { Checkbox } from '@mui/material';
 import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
-import Slider from '@mui/material/Slider';
+import { FilterPanel } from '../filterPanel/filterPanel';
 
 export function MoviesList() {
   const FavoriteMoviesList = useContext(FavoriteMoviesContext);
@@ -133,76 +132,15 @@ export function MoviesList() {
 
   return (
     <main>
-      <fieldset>
-        <select className='sort-type' onChange={onSortChange}>
-          <option selected disabled>
-            Choose sort type
-          </option>
-          <option value='titleASC'>A-Z</option>
-          <option value='titleDESC'>Z-A</option>
-          <option value='ratingASC'>Highest Rating</option>
-          <option value='ratingDESC'>Lowest Rating</option>
-          <option value='newest'>Newest release year</option>
-          <option value='oldest'>Oldest release year</option>
-        </select>
-        <input
-          value={yearRange[0]}
-          type='number'
-          min={1000}
-          max={new Date().getFullYear() - 1}
-          onChange={(event) => handleYearChange(event.target.value, 'min')}
-          name='minYear'
-        ></input>
-        <input
-          value={yearRange[1]}
-          type='number'
-          min={1001}
-          max={new Date().getFullYear()}
-          onChange={(event) => handleYearChange(event.target.value, 'max')}
-          name='maxYear'
-        ></input>
-        <Slider
-          value={yearRange}
-          onChange={(event) => handleYearChange(event.target.value, 'slider')}
-          valueLabelDisplay='auto'
-          min={1000}
-          max={new Date().getFullYear()}
-        />
-        <input
-          value={ratingRange[0]}
-          type='number'
-          min={1}
-          max={5}
-          name='minRating'
-          onChange={(event) =>
-            handleRatingFilterChange(event.target.value, 'min')
-          }
-        ></input>
-        <input
-          value={ratingRange[1]}
-          type='number'
-          min={1}
-          max={5}
-          name='maxRating'
-          onChange={(event) =>
-            handleRatingFilterChange(event.target.value, 'max')
-          }
-        ></input>
-        <Slider
-          value={ratingRange}
-          onChange={(event) =>
-            handleRatingFilterChange(event.target.value, 'slider')
-          }
-          valueLabelDisplay='auto'
-          min={1}
-          max={5}
-        />
-        <div>
-          <Checkbox onChange={setOnlyFavoriteMovies} />
-          <span>Only favorite movies</span>
-        </div>
-        <div onClick={handleDelete}>Delete chosen movies</div>
-      </fieldset>
+      <FilterPanel
+        onSortChange={onSortChange}
+        yearRange={yearRange}
+        handleYearChange={handleYearChange}
+        ratingRange={ratingRange}
+        handleRatingFilterChange={handleRatingFilterChange}
+        setOnlyFavoriteMovies={setOnlyFavoriteMovies}
+        handleDelete={handleDelete}
+      ></FilterPanel>
       <div className='movies-list'>
         {moviesFound.map((movie) => {
           return (
