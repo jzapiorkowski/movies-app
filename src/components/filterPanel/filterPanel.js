@@ -5,8 +5,12 @@ import { Checkbox } from '@mui/material';
 export function FilterPanel(props) {
   return (
     <fieldset>
-      <select className='sort-type' onChange={props.onSortChange}>
-        <option selected disabled>
+      <select
+        className='sort-type'
+        defaultValue={'DEFAULT'}
+        onChange={props.onSortChange}
+      >
+        <option value='DEFAULT' disabled>
           Choose sort type
         </option>
         <option value='titleASC'>A-Z</option>
