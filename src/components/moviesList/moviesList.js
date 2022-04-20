@@ -5,6 +5,7 @@ import './moviesList.scss';
 import { Outlet } from 'react-router-dom';
 import { Checkbox } from '@mui/material';
 import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
+import Slider from '@mui/material/Slider';
 
 export function MoviesList() {
   const FavoriteMoviesList = useContext(FavoriteMoviesContext);
@@ -119,7 +120,9 @@ export function MoviesList() {
   };
 
   const handleRatingFilterChange = (rating, side) => {
-    if (side === 'min') {
+    if (side === 'slider') {
+      setRatingRange(rating);
+    } else if (side === 'min') {
       setRatingRange([rating, ratingRange[1]]);
     } else if (side === 'max') {
       setRatingRange([ratingRange[0], rating]);
@@ -176,6 +179,15 @@ export function MoviesList() {
             handleRatingFilterChange(event.target.value, 'max')
           }
         ></input>
+        <Slider
+          value={ratingRange}
+          onChange={(event) =>
+            handleRatingFilterChange(event.target.value, 'slider')
+          }
+          valueLabelDisplay='auto'
+          min={1}
+          max={5}
+        />
         <div>
           <Checkbox onChange={setOnlyFavoriteMovies} />
           <span>Only favorite movies</span>
