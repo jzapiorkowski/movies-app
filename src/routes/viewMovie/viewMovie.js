@@ -11,6 +11,7 @@ import {
   FavoriteMoviesContext,
   UpdateFavoriteMoviesContext,
 } from '../../contexts/favoriteMovieContext';
+import noMovieImage from '../../assets/images/noMovieImage.jpg';
 
 export function ViewMovie() {
   let { id } = useParams();
@@ -52,7 +53,10 @@ export function ViewMovie() {
   return (
     <div className='movie-modal-wrapper'>
       <div className='movie-modal'>
-        <img src={movieInfo.image_url} alt=''></img>
+        <img
+          src={movieInfo.image_url ? movieInfo.image_url : noMovieImage}
+          alt=''
+        ></img>
         <div className='options'>
           <div className='close-button' onClick={handleClose}>
             <AiOutlineClose />

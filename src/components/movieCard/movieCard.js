@@ -9,6 +9,7 @@ import {
   FavoriteMoviesContext,
   UpdateFavoriteMoviesContext,
 } from '../../contexts/favoriteMovieContext';
+import noMovieImage from '../../assets/images/noMovieImage.jpg';
 
 export function MovieCard({ handleChecked, movie }) {
   const favoriteMoviesList = useContext(FavoriteMoviesContext);
@@ -23,7 +24,10 @@ export function MovieCard({ handleChecked, movie }) {
   return (
     <div className='movie-card' key={movie.id}>
       <Link to={`movie/${movie.id}`} className='image'>
-        <img src={movie.image_url} alt=''></img>
+        <img
+          src={movie.image_url ? movie.image_url : noMovieImage}
+          alt=''
+        ></img>
       </Link>
       <Link to={`movie/${movie.id}`} className='title'>
         {movie.title}
