@@ -112,7 +112,9 @@ export function MoviesList() {
   };
 
   const handleYearChange = (year, side) => {
-    if (side === 'min') {
+    if (side === 'slider') {
+      setYearRange(year);
+    } else if (side === 'min') {
       setYearRange([year, yearRange[1]]);
     } else if (side === 'max') {
       setYearRange([yearRange[0], year]);
@@ -159,6 +161,13 @@ export function MoviesList() {
           onChange={(event) => handleYearChange(event.target.value, 'max')}
           name='maxYear'
         ></input>
+        <Slider
+          value={yearRange}
+          onChange={(event) => handleYearChange(event.target.value, 'slider')}
+          valueLabelDisplay='auto'
+          min={1000}
+          max={new Date().getFullYear()}
+        />
         <input
           defaultValue={ratingRange[0]}
           type='number'
