@@ -114,9 +114,9 @@ export function MoviesList() {
     if (side === 'slider') {
       setYearRange(year);
     } else if (side === 'min') {
-      setYearRange([year, yearRange[1]]);
+      setYearRange([Number(year), yearRange[1]]);
     } else if (side === 'max') {
-      setYearRange([yearRange[0], year]);
+      setYearRange([yearRange[0], Number(year)]);
     }
   };
 
@@ -124,9 +124,9 @@ export function MoviesList() {
     if (side === 'slider') {
       setRatingRange(rating);
     } else if (side === 'min') {
-      setRatingRange([rating, ratingRange[1]]);
+      setRatingRange([Number(rating), ratingRange[1]]);
     } else if (side === 'max') {
-      setRatingRange([ratingRange[0], rating]);
+      setRatingRange([ratingRange[0], Number(rating)]);
     }
   };
 
