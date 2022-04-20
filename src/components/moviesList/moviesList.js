@@ -146,7 +146,7 @@ export function MoviesList() {
           <option value='oldest'>Oldest release year</option>
         </select>
         <input
-          defaultValue={yearRange[0]}
+          value={yearRange[0]}
           type='number'
           min={1000}
           max={new Date().getFullYear() - 1}
@@ -154,7 +154,7 @@ export function MoviesList() {
           name='minYear'
         ></input>
         <input
-          defaultValue={yearRange[1]}
+          value={yearRange[1]}
           type='number'
           min={1001}
           max={new Date().getFullYear()}
@@ -169,7 +169,7 @@ export function MoviesList() {
           max={new Date().getFullYear()}
         />
         <input
-          defaultValue={ratingRange[0]}
+          value={ratingRange[0]}
           type='number'
           min={1}
           max={5}
@@ -179,7 +179,7 @@ export function MoviesList() {
           }
         ></input>
         <input
-          defaultValue={ratingRange[1]}
+          value={ratingRange[1]}
           type='number'
           min={1}
           max={5}
