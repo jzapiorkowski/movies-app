@@ -27,43 +27,65 @@ export function MoviesList() {
   }, []);
 
   useEffect(() => {
-    let tmp = [];
-
     switch (sortType) {
       case 'titleASC':
-        tmp = movies.sort((a, b) =>
-          a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+        setMovies(
+          [...movies].sort((a, b) =>
+            a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+          )
+        );
+        setMoviesFound(
+          [...moviesFound].sort((a, b) =>
+            a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1
+          )
         );
         break;
 
       case 'titleDESC':
-        tmp = movies.sort((a, b) =>
-          a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1
+        setMovies(
+          [...movies].sort((a, b) =>
+            a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1
+          )
+        );
+        setMoviesFound(
+          [...moviesFound].sort((a, b) =>
+            a.title.toLowerCase() < b.title.toLowerCase() ? 1 : -1
+          )
         );
         break;
 
       case 'ratingASC':
-        tmp = movies.sort((a, b) => (a.rating < b.rating ? 1 : -1));
+        setMovies([...movies].sort((a, b) => (a.rating < b.rating ? 1 : -1)));
+        setMoviesFound(
+          [...moviesFound].sort((a, b) => (a.rating < b.rating ? 1 : -1))
+        );
         break;
 
       case 'ratingDESC':
-        tmp = movies.sort((a, b) => (a.rating > b.rating ? 1 : -1));
+        setMovies([...movies].sort((a, b) => (a.rating > b.rating ? 1 : -1)));
+        setMoviesFound(
+          [...moviesFound].sort((a, b) => (a.rating > b.rating ? 1 : -1))
+        );
         break;
 
       case 'newest':
-        tmp = movies.sort((a, b) => (a.year < b.year ? 1 : -1));
+        setMovies([...movies].sort((a, b) => (a.year < b.year ? 1 : -1)));
+        setMoviesFound(
+          [...moviesFound].sort((a, b) => (a.year < b.year ? 1 : -1))
+        );
         break;
 
       case 'oldest':
-        tmp = movies.sort((a, b) => (a.year > b.year ? 1 : -1));
+        setMovies([...movies].sort((a, b) => (a.year > b.year ? 1 : -1)));
+        setMoviesFound(
+          [...moviesFound].sort((a, b) => (a.year > b.year ? 1 : -1))
+        );
         break;
 
       default:
-        tmp = movies.reverse();
+        setMovies([...movies].reverse());
         break;
     }
-
-    setMoviesFound([...tmp]);
   }, [sortType]);
 
   useEffect(() => {
