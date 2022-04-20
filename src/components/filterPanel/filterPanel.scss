@@ -1,0 +1,73 @@
+fieldset {
+  border: none;
+  margin: auto;
+  display: grid;
+  grid-template-areas:
+    ' buttons buttons buttons'
+    'slider1 slider1 slider1'
+    'slider2 slider2 slider2';
+  gap: 20px;
+  margin-bottom: 80px;
+  .button-group {
+    grid-area: buttons;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    @media (max-width: 900px) {
+      gap: 15px;
+    }
+    @media (max-width: 700px) {
+      flex-direction: column;
+      align-items: center;
+    }
+    > * {
+      width: 230px;
+      height: 40px;
+      border-radius: 7px;
+      border: none;
+      @media (max-width: 900px) {
+        width: calc((90vw - 30px) / 3);
+      }
+      @media (max-width: 700px) {
+        width: 250px;
+      }
+    }
+    select {
+      background-color: #cee5f2;
+      padding: 0 5px;
+    }
+    .favorite-movies-filter {
+      background-color: #cee5f2;
+      padding-right: 9px;
+    }
+    .delete-movies {
+      background-color: red;
+      padding: 0 9px;
+    }
+  }
+  .filter {
+    width: 750px;
+    display: flex;
+    gap: 20px;
+    margin: auto;
+    @media (max-width: 900px) {
+      width: 90vw;
+    }
+    input {
+      width: 60px;
+      height: 40px;
+      border-radius: 7px;
+      background-color: #cee5f2;
+      border: none;
+    }
+    span {
+      color: #cee5f2;
+    }
+    &.year {
+      grid-area: slider1;
+    }
+    &.rating {
+      grid-area: slider2;
+    }
+  }
+}
