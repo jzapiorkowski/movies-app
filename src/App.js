@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom';
 import { AddMovieForm } from './routes/addMovieForm/addMovieForm';
 import { ViewMovie } from './routes/viewMovie/viewMovie';
 import { FavoriteMovieProvider } from './contexts/favoriteMovieContext';
-
+import { MovieNotFound } from './routes/movieNotFound/movieNotFound';
 function App() {
   return (
     <div className='App'>
@@ -15,6 +15,7 @@ function App() {
             <Route path='movie/:id' element={<ViewMovie />}></Route>
           </Route>
           <Route path='/add-movie' element={<AddMovieForm />}></Route>
+          <Route path='/movie-not-found' element={<MovieNotFound />}></Route>
         </Routes>
       </FavoriteMovieProvider>
     </div>
