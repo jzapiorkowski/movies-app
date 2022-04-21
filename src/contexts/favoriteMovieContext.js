@@ -4,7 +4,7 @@ export const FavoriteMoviesContext = createContext();
 export const UpdateFavoriteMoviesContext = createContext();
 
 export function FavoriteMovieProvider(props) {
-  const [favoriteMovies, setfavoriteMovies] = useState([2]);
+  const [favoriteMovies, setfavoriteMovies] = useState([]);
 
   const updateFavoriteMovies = (movieId) => {
     if (favoriteMovies.includes(movieId)) {
