@@ -128,6 +128,16 @@ export function MoviesList() {
   const handleDelete = () => {
     moviesToDelete.forEach((id) => {
       moviesClient.delete(`/movie/${id}`);
+      setMovies(
+        [...movies].filter((movie) => {
+          return movie.id !== id;
+        })
+      );
+      setMoviesFound(
+        [...moviesFound].filter((movie) => {
+          return movie.id !== id;
+        })
+      );
     });
   };
 
