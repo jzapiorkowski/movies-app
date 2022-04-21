@@ -8,7 +8,11 @@
   display: grid;
   grid-template-columns: 140px 510px 100px;
   grid-template-rows: repeat(3, 1fr);
-  @media (max-width: 1300px) {
+  @media (max-width: 768px) {
+    width: 600px;
+    grid-template-columns: 140px calc(90% - 140px) 10%;
+  }
+  @media (max-width: 600px) {
     width: 95%;
     grid-template-columns: 105px calc(90% - 105px) 10%;
     height: 150px;
@@ -47,7 +51,7 @@
         width: 140px;
         border-radius: 10px 0 0 10px;
 
-        @media (max-width: 900px) {
+        @media (max-width: 600px) {
           width: 105px;
         }
       }
