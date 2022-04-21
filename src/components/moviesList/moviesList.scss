@@ -1,23 +1,33 @@
 main {
-  .movies-list {
-    margin: auto;
-    width: 1530px;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 30px;
-    justify-content: flex-start;
-    @media (max-width: 1600px) {
-      width: auto;
-      justify-content: center;
+  div {
+    &.no-movies-found {
+      margin: auto;
+      width: 750px;
+      text-align: center;
+      @media (max-width: 900px) {
+        width: 90vw;
+      }
     }
-    @media (max-width: 1300px) {
-      gap: 15px;
+    .movies-list {
+      margin: auto;
+      width: 1530px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      justify-content: flex-start;
+      @media (max-width: 1600px) {
+        width: auto;
+        justify-content: center;
+      }
+      @media (max-width: 1300px) {
+        gap: 15px;
+      }
     }
-  }
-  nav {
-    margin: 40px auto;
-    ul {
-      justify-content: center;
+    nav {
+      margin: 40px auto;
+      ul {
+        justify-content: center;
+      }
     }
   }
 }
