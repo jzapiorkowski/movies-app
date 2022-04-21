@@ -112,6 +112,7 @@ export function MoviesList() {
     }
 
     setMoviesFound([...tmp]);
+    setCurrentPage(1);
   }
 
   const handleChecked = (movieId) => {
