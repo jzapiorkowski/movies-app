@@ -25,10 +25,15 @@ export function ViewMovie() {
   const isFavorite = favoriteMoviesList.includes(movieInfo.id);
 
   useEffect(() => {
-    moviesClient.get(`/movie/${id}`).then((response) => {
-      setMovieInfo(response.data);
-      setMovieRatingStars(response.data.rating);
-    });
+    moviesClient
+      .get(`/movie/${id}`)
+      .then((response) => {
+        setMovieInfo(response.data);
+        setMovieRatingStars(response.data.rating);
+      })
+      .catch(() => {
+        navigate('/movie-not-found');
+      });
   }, []);
 
   useEffect(() => {
