@@ -5,6 +5,8 @@ import { AddMovieForm } from './routes/addMovieForm/addMovieForm';
 import { ViewMovie } from './routes/viewMovie/viewMovie';
 import { FavoriteMovieProvider } from './contexts/favoriteMovieContext';
 import { MovieNotFound } from './routes/movieNotFound/movieNotFound';
+import { NoMatch } from './routes/noMatch/noMatch';
+
 function App() {
   return (
     <div className='App'>
@@ -16,6 +18,7 @@ function App() {
           </Route>
           <Route path='/add-movie' element={<AddMovieForm />}></Route>
           <Route path='/movie-not-found' element={<MovieNotFound />}></Route>
+          <Route path='*' element={<NoMatch />}></Route>
         </Routes>
       </FavoriteMovieProvider>
     </div>
