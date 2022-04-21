@@ -201,83 +201,92 @@ export function MoviesList() {
         setOnlyFavoriteMovies={setOnlyFavoriteMovies}
         handleDeleteButtonClick={handleOpenDeleteMoviesModal}
       ></FilterPanel>
-      <div className='movies-list'>
-        {currentMovies.map((movie) => {
-          return (
-            <MovieCard
-              movie={movie}
-              key={movie.id}
-              handleChecked={handleChecked}
-            ></MovieCard>
-          );
-        })}
-      </div>
-      <Pagination
-        count={Math.ceil(moviesFound.length / 12)}
-        variant='outlined'
-        shape='rounded'
-        className='pagination'
-        page={currentPage}
-        onChange={handlePageChange}
-        size='large'
-      />
-      <Dialog
-        open={openDeleteMoviesModal}
-        onClose={handleCloseDeleteMoviesModal}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle
-          id='alert-dialog-title'
-          sx={{
-            backgroundColor: '#accbe1',
-          }}
-        >
-          Are you sure you want to delete selected movies?
-        </DialogTitle>
-        <DialogContent
-          sx={{
-            backgroundColor: '#accbe1',
-          }}
-        >
-          <DialogContentText id='alert-dialog-description'>
-            After confirming you won't be able to get them back
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions
-          sx={{
-            backgroundColor: '#accbe1',
-          }}
-        >
-          <button
-            onClick={handleCloseDeleteMoviesModal}
-            style={{
-              backgroundColor: '#cee5f2',
-              height: '40px',
-              width: '100px',
-              border: 'none',
-              borderRadius: '7px',
-              cursor: 'pointer',
-            }}
+      {!moviesFound.length ? (
+        <div className='no-movies-found'>
+          Seems like we can't find movies with current filters provided. Try
+          changing some filters!
+        </div>
+      ) : (
+        <div>
+          <div className='movies-list'>
+            {currentMovies.map((movie) => {
+              return (
+                <MovieCard
+                  movie={movie}
+                  key={movie.id}
+                  handleChecked={handleChecked}
+                ></MovieCard>
+              );
+            })}
+          </div>
+          <Pagination
+            count={Math.ceil(moviesFound.length / 12)}
+            variant='outlined'
+            shape='rounded'
+            className='pagination'
+            page={currentPage}
+            onChange={handlePageChange}
+            size='large'
+          />
+          <Dialog
+            open={openDeleteMoviesModal}
+            onClose={handleCloseDeleteMoviesModal}
+            aria-labelledby='alert-dialog-title'
+            aria-describedby='alert-dialog-description'
           >
-            Disagree
-          </button>
-          <button
-            onClick={handleDelete}
-            style={{
-              backgroundColor: 'red',
-              height: '40px',
-              width: '100px',
-              border: 'none',
-              borderRadius: '7px',
-              cursor: 'pointer',
-            }}
-          >
-            Agree
-          </button>
-        </DialogActions>
-      </Dialog>
-      <Outlet />
+            <DialogTitle
+              id='alert-dialog-title'
+              sx={{
+                backgroundColor: '#accbe1',
+              }}
+            >
+              Are you sure you want to delete selected movies?
+            </DialogTitle>
+            <DialogContent
+              sx={{
+                backgroundColor: '#accbe1',
+              }}
+            >
+              <DialogContentText id='alert-dialog-description'>
+                After confirming you won't be able to get them back
+              </DialogContentText>
+            </DialogContent>
+            <DialogActions
+              sx={{
+                backgroundColor: '#accbe1',
+              }}
+            >
+              <button
+                onClick={handleCloseDeleteMoviesModal}
+                style={{
+                  backgroundColor: '#cee5f2',
+                  height: '40px',
+                  width: '100px',
+                  border: 'none',
+                  borderRadius: '7px',
+                  cursor: 'pointer',
+                }}
+              >
+                Disagree
+              </button>
+              <button
+                onClick={handleDelete}
+                style={{
+                  backgroundColor: 'red',
+                  height: '40px',
+                  width: '100px',
+                  border: 'none',
+                  borderRadius: '7px',
+                  cursor: 'pointer',
+                }}
+              >
+                Agree
+              </button>
+            </DialogActions>
+          </Dialog>
+          <Outlet />
+        </div>
+      )}
     </main>
   );
 }
