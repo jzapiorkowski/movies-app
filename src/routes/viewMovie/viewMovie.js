@@ -3,8 +3,6 @@ import React, { useEffect, useState, useContext } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import './viewMovie.scss';
 import { AiOutlineClose } from 'react-icons/ai';
-import StarBorderIcon from '@mui/icons-material/StarBorder';
-import StarIcon from '@mui/icons-material/Star';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import {
@@ -12,11 +10,13 @@ import {
   UpdateFavoriteMoviesContext,
 } from '../../contexts/favoriteMovieContext';
 import noMovieImage from '../../assets/images/noMovieImage.jpg';
+import Rating from '@mui/material/Rating';
 
 export function ViewMovie() {
   let { id } = useParams();
   let navigate = useNavigate();
   const [movieInfo, setMovieInfo] = useState({});
+  const [movieRatingStars, setMovieRatingStars] = useState(null);
 
   const favoriteMoviesList = useContext(FavoriteMoviesContext);
   const updateFavoriteMoviesContext = useContext(UpdateFavoriteMoviesContext);
@@ -26,6 +26,7 @@ export function ViewMovie() {
   useEffect(() => {
     moviesClient.get(`/movie/${id}`).then((response) => {
       setMovieInfo(response.data);
+      setMovieRatingStars(response.data.rating);
     });
   }, []);
 
@@ -38,16 +39,9 @@ export function ViewMovie() {
     navigate('/');
   };
 
-  const ratingStars = () => {
-    let tmp = [];
-    for (let i = 0; i < 5; i++) {
-      tmp.push(
-        <div className='star' key={i}>
-          {i < movieInfo.rating ? <StarIcon /> : <StarBorderIcon />}
-        </div>
-      );
-    }
-    return <div className='stars'>{tmp}</div>;
+  const handleUsersRating = (event) => {
+    setMovieRatingStars(Number(event.target.value));
+    moviesClient.patch(`/movie/${id}/rate?score=${event.target.value}`);
   };
 
   return (
@@ -76,11 +70,18 @@ export function ViewMovie() {
             )}
           </div>
         </div>
-        {ratingStars()}
+        <Rating
+          name='simple-controlled'
+          value={movieRatingStars}
+          onChange={handleUsersRating}
+          size='large'
+          sx={{
+            width: '150px',
+            height: '30px',
+          }}
+        />
         <p className='description'>{movieInfo.description}</p>
-        <p className='director' onClick={ratingStars}>
-          Directed by: {movieInfo.director}
-        </p>
+        <p className='director'>Directed by: {movieInfo.director}</p>
         <div className='year'>Year: {movieInfo.year}</div>
       </div>
     </div>
