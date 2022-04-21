@@ -65,6 +65,11 @@
         }
       }
     }
+    .rating-area {
+      p {
+        color: #43b929;
+      }
+    }
     .description {
       @media (max-width: 1300px) {
         grid-column: 1 / span 2;
