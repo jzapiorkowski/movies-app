@@ -39,7 +39,7 @@ export function MovieCard({ handleChecked, movie }) {
       </div>
       <div className='rating'>
         <StarIcon style={{ color: '#ffc200' }} />
-        <p>{movie.rating}/5</p>
+        <p>{Math.round(movie.rating)}/5</p>
       </div>
       <div className='favorite-icon'>
         {isFavorite ? (
