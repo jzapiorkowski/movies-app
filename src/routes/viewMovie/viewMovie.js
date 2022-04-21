@@ -17,6 +17,7 @@ export function ViewMovie() {
   let navigate = useNavigate();
   const [movieInfo, setMovieInfo] = useState({});
   const [movieRatingStars, setMovieRatingStars] = useState(null);
+  const [alreadyRated, setAlreadyRated] = useState(false);
 
   const favoriteMoviesList = useContext(FavoriteMoviesContext);
   const updateFavoriteMoviesContext = useContext(UpdateFavoriteMoviesContext);
@@ -42,6 +43,7 @@ export function ViewMovie() {
   const handleUsersRating = (event) => {
     setMovieRatingStars(Number(event.target.value));
     moviesClient.patch(`/movie/${id}/rate?score=${event.target.value}`);
+    setAlreadyRated(true);
   };
 
   return (
@@ -70,16 +72,22 @@ export function ViewMovie() {
             )}
           </div>
         </div>
-        <Rating
-          name='simple-controlled'
-          value={movieRatingStars}
-          onChange={handleUsersRating}
-          size='large'
-          sx={{
-            width: '150px',
-            height: '30px',
-          }}
-        />
+        <div className='rating-area'>
+          <Rating
+            name='simple-controlled'
+            value={movieRatingStars}
+            onChange={handleUsersRating}
+            size='large'
+            sx={{
+              width: '150px',
+              height: '30px',
+            }}
+            readOnly={alreadyRated}
+          />
+          {alreadyRated ? (
+            <p>You rated this movie {movieRatingStars}/5</p>
+          ) : null}
+        </div>
         <p className='description'>{movieInfo.description}</p>
         <p className='director'>Directed by: {movieInfo.director}</p>
         <div className='year'>Year: {movieInfo.year}</div>
