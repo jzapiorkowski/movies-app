@@ -1,9 +1,15 @@
 main {
   .movies-list {
+    margin: auto;
+    width: 1530px;
     display: flex;
     flex-wrap: wrap;
     gap: 30px;
-    justify-content: center;
+    justify-content: flex-start;
+    @media (max-width: 1600px) {
+      width: auto;
+      justify-content: center;
+    }
     @media (max-width: 1300px) {
       gap: 15px;
     }
