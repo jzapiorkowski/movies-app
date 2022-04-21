@@ -5,6 +5,7 @@ import './moviesList.scss';
 import { Outlet } from 'react-router-dom';
 import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
 import { FilterPanel } from '../filterPanel/filterPanel';
+import Pagination from '@mui/material/Pagination';
 
 export function MoviesList() {
   const FavoriteMoviesList = useContext(FavoriteMoviesContext);
@@ -18,6 +19,7 @@ export function MoviesList() {
     (prevState) => !prevState,
     false
   );
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     moviesClient.get('/movies').then((movies) => {
@@ -152,6 +154,14 @@ export function MoviesList() {
     }
   };
 
+  const handlePageChange = (e, p) => {
+    setCurrentPage(p);
+  };
+
+  const indexOfLastMovie = currentPage * 12;
+  const indexOfFirstMovie = indexOfLastMovie - 12;
+  const currentMovies = moviesFound.slice(indexOfFirstMovie, indexOfLastMovie);
+
   return (
     <main>
       <FilterPanel
@@ -164,7 +174,7 @@ export function MoviesList() {
         handleDelete={handleDelete}
       ></FilterPanel>
       <div className='movies-list'>
-        {moviesFound.map((movie) => {
+        {currentMovies.map((movie) => {
           return (
             <MovieCard
               movie={movie}
@@ -174,6 +184,14 @@ export function MoviesList() {
           );
         })}
       </div>
+      <Pagination
+        count={Math.ceil(moviesFound.length / 12)}
+        variant='outlined'
+        shape='rounded'
+        className='pagination'
+        page={currentPage}
+        onChange={handlePageChange}
+      />
       <Outlet />
     </main>
   );
