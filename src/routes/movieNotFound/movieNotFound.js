@@ -1,5 +1,6 @@
 import React from 'react';
 import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
+import './movieNotFound.scss';
 
 export function MovieNotFound() {
   return (
