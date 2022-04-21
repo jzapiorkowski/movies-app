@@ -134,17 +134,20 @@ export function MoviesList() {
   const handleDelete = () => {
     moviesToDelete.forEach((id) => {
       moviesClient.delete(`/movie/${id}`);
-      setMovies(
-        [...movies].filter((movie) => {
-          return movie.id !== id;
-        })
-      );
-      setMoviesFound(
-        [...moviesFound].filter((movie) => {
-          return movie.id !== id;
-        })
-      );
     });
+
+    setMovies(
+      [...movies].filter((movie) => {
+        return !moviesToDelete.includes(movie.id);
+      })
+    );
+    setMoviesFound(
+      [...moviesFound].filter((movie) => {
+        return !moviesToDelete.includes(movie.id);
+      })
+    );
+
+    setMoviesToDelete([]);
     setOpenDeleteMoviesModal(false);
   };
 
