@@ -191,6 +191,7 @@ export function MoviesList() {
         className='pagination'
         page={currentPage}
         onChange={handlePageChange}
+        size='large'
       />
       <Outlet />
     </main>

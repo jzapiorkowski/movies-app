@@ -1,9 +1,17 @@
-.movies-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  justify-content: center;
-  @media (max-width: 1300px) {
-    gap: 15px;
+main {
+  .movies-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    @media (max-width: 1300px) {
+      gap: 15px;
+    }
+  }
+  nav {
+    margin: 40px auto;
+    ul {
+      justify-content: center;
+    }
   }
 }
