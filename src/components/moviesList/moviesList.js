@@ -224,17 +224,54 @@ export function MoviesList() {
         aria-labelledby='alert-dialog-title'
         aria-describedby='alert-dialog-description'
       >
-        <DialogTitle id='alert-dialog-title'>
+        <DialogTitle
+          id='alert-dialog-title'
+          sx={{
+            backgroundColor: '#accbe1',
+          }}
+        >
           Are you sure you want to delete selected movies?
         </DialogTitle>
-        <DialogContent>
+        <DialogContent
+          sx={{
+            backgroundColor: '#accbe1',
+          }}
+        >
           <DialogContentText id='alert-dialog-description'>
             After confirming you won't be able to get them back
           </DialogContentText>
         </DialogContent>
-        <DialogActions>
-          <button onClick={handleCloseDeleteMoviesModal}>Disagree</button>
-          <button onClick={handleDelete}>Agree</button>
+        <DialogActions
+          sx={{
+            backgroundColor: '#accbe1',
+          }}
+        >
+          <button
+            onClick={handleCloseDeleteMoviesModal}
+            style={{
+              backgroundColor: '#cee5f2',
+              height: '40px',
+              width: '100px',
+              border: 'none',
+              borderRadius: '7px',
+              cursor: 'pointer',
+            }}
+          >
+            Disagree
+          </button>
+          <button
+            onClick={handleDelete}
+            style={{
+              backgroundColor: 'red',
+              height: '40px',
+              width: '100px',
+              border: 'none',
+              borderRadius: '7px',
+              cursor: 'pointer',
+            }}
+          >
+            Agree
+          </button>
         </DialogActions>
       </Dialog>
       <Outlet />
