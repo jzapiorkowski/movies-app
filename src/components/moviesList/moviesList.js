@@ -6,6 +6,11 @@ import { Outlet } from 'react-router-dom';
 import { FavoriteMoviesContext } from '../../contexts/favoriteMovieContext';
 import { FilterPanel } from '../filterPanel/filterPanel';
 import Pagination from '@mui/material/Pagination';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
 
 export function MoviesList() {
   const FavoriteMoviesList = useContext(FavoriteMoviesContext);
@@ -20,6 +25,7 @@ export function MoviesList() {
     false
   );
   const [currentPage, setCurrentPage] = useState(1);
+  const [openDeleteMoviesModal, setOpenDeleteMoviesModal] = useState(false);
 
   useEffect(() => {
     moviesClient.get('/movies').then((movies) => {
@@ -139,6 +145,7 @@ export function MoviesList() {
         })
       );
     });
+    setOpenDeleteMoviesModal(false);
   };
 
   const onSortChange = (event) => {
@@ -169,6 +176,13 @@ export function MoviesList() {
     setCurrentPage(p);
   };
 
+  const handleOpenDeleteMoviesModal = () => {
+    setOpenDeleteMoviesModal(true);
+  };
+  const handleCloseDeleteMoviesModal = () => {
+    setOpenDeleteMoviesModal(false);
+  };
+
   const indexOfLastMovie = currentPage * 12;
   const indexOfFirstMovie = indexOfLastMovie - 12;
   const currentMovies = moviesFound.slice(indexOfFirstMovie, indexOfLastMovie);
@@ -182,7 +196,7 @@ export function MoviesList() {
         ratingRange={ratingRange}
         handleRatingFilterChange={handleRatingFilterChange}
         setOnlyFavoriteMovies={setOnlyFavoriteMovies}
-        handleDelete={handleDelete}
+        handleDeleteButtonClick={handleOpenDeleteMoviesModal}
       ></FilterPanel>
       <div className='movies-list'>
         {currentMovies.map((movie) => {
@@ -204,6 +218,25 @@ export function MoviesList() {
         onChange={handlePageChange}
         size='large'
       />
+      <Dialog
+        open={openDeleteMoviesModal}
+        onClose={handleCloseDeleteMoviesModal}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>
+          Are you sure you want to delete selected movies?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            After confirming you won't be able to get them back
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button onClick={handleCloseDeleteMoviesModal}>Disagree</button>
+          <button onClick={handleDelete}>Agree</button>
+        </DialogActions>
+      </Dialog>
       <Outlet />
     </main>
   );

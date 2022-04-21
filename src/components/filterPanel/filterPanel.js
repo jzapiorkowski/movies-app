@@ -26,7 +26,10 @@ export function FilterPanel(props) {
           <Checkbox onChange={props.setOnlyFavoriteMovies} />
           <span>Only favorite movies</span>
         </div>
-        <button onClick={props.handleDelete} className='delete-movies'>
+        <button
+          onClick={props.handleDeleteButtonClick}
+          className='delete-movies'
+        >
           Delete chosen movies
         </button>
       </div>
