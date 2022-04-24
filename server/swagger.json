@@ -1,0 +1,239 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Api Documentation",
+    "description": "",
+    "version": "1.0"
+  },
+  "produces": ["application/json"],
+  "paths": {
+    "/movies": {
+      "get": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "getMovies",
+        "description": "",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Movie"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/movie": {
+      "post": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "createMovie",
+        "description": "",
+        "parameters": [
+          {
+            "name": "movie", 
+            "description": "movie",
+            "in": "body", 
+            "required": true, 
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        }
+      }
+    },
+    "/movie/{id}": {
+      "get": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "getMovieById",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "type": "integer",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        }
+      },
+      "put": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "updateMovieById",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "type": "integer",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "movie", 
+            "description": "movie",
+            "in": "body", 
+            "required": true, 
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        }
+      },
+      "delete": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "deleteMovieById",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "type": "integer",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/movie/{id}/rate": {
+      "get": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "getMovieRatingById",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "type": "integer",
+            "required": true,
+            "in": "path"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Rating"
+            }
+          }
+        }
+      },
+      "patch": {
+        "x-swagger-router-controller": "movie",
+        "tags": ["Movies"],
+        "summary": "updateMovieRatingById",
+        "description": "",
+        "parameters": [
+          {
+            "name": "id",
+            "description": "id",
+            "type": "integer",
+            "required": true,
+            "in": "path"
+          },
+          {
+            "name": "score",
+            "description": "score",
+            "type": "integer",
+            "required": true,
+            "in": "query"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Movie"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Movie": {
+      "required": ["title", "director", "genre", "year", "description"],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "title": {
+          "type": "string"
+        },
+        "director": {
+          "type": "string"
+        },
+        "genre": {
+          "type": "string"
+        },
+        "year": {
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "image_url": {
+          "type": "string"
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "integer"
+        }
+      }
+    },
+    "Rating": {
+      "properties": {
+        "id": {
+          "type": "integer",
+          "uniqueItems": true
+        },
+        "rating_count": {
+          "type": "integer"
+        },
+        "rating": {
+          "type": "integer"
+        }
+      }
+    }
+  }
+}
